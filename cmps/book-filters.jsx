@@ -6,7 +6,9 @@ export function BookFilter({ onSetFilter }) {
   const [filterByToEdit, setFilterByToEdit] = useState(
     bookService.getDefaultFilter()
   )
-  useEffect(() => {}, [filterByToEdit])
+  useEffect(() => {
+    onSetFilter(filterByToEdit)
+  }, [filterByToEdit])
 
   function handleFilters({ target }) {
     let { value, type, name: field } = target
@@ -15,6 +17,7 @@ export function BookFilter({ onSetFilter }) {
       return { ...prevFilter, [field]: value }
     })
   }
+
   return (
     <section className="book-filter">
       <form className="book-filter-form">

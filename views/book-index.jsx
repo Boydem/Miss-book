@@ -6,19 +6,23 @@ import { bookService } from "../services/book.service.js"
 
 export function BookIndex() {
   const [books, setBooks] = useState([])
+  const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
   useEffect(() => {
     loadBooks()
-    console.log("books:", books)
-  }, [])
+  }, [filterBy])
 
   function loadBooks() {
-    bookService.query().then((books) => setBooks(books))
+    bookService.query(filterBy).then((books) => setBooks(books))
   }
 
+  function onSetFilter(filterBy) {
+    setFilterBy(filterBy)
+  }
+  console.log("filterBy:", filterBy)
   return (
     <section className="book-index">
-      <BookFilter />
+      <BookFilter onSetFilter={onSetFilter} />
       <BookList books={books} />
     </section>
   )
