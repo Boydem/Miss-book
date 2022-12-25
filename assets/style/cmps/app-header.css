@@ -1,7 +1,11 @@
 .app-header {
+  position: sticky;
+  top: 0;
+  padding: 0.5em 1em;
   background-color: var(--clr1);
   color: var(--clr1bg);
   box-shadow: 0px 0px 10px -5px var(--gray3);
+  z-index: 2;
 }
 .nav-links {
   color: var(--gray2);

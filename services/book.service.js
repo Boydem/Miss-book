@@ -13,7 +13,7 @@ export const bookService = {
 }
 
 function getDefaultFilter() {
-    return { txt: '', maxPrice: '' }
+    return { title: '', maxPrice: '' }
 }
 
 function query() {

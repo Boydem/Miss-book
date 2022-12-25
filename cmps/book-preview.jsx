@@ -1,6 +1,4 @@
 export function BookPreview({ book }) {
-  console.log("book:", book)
-
   return (
     <article className="book-preview">
       <div className="book-img-overlay">
