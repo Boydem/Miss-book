@@ -20,31 +20,31 @@ export function BookFilter({ onSetFilter }) {
   }
 
   return (
-    <section className="book-filter">
-      <form className="book-filter-form">
-        <label htmlFor="title">
+    <section className='book-filter'>
+      <form className='book-filter-form'>
+        <label htmlFor='title'>
           <input
             onChange={handleFilters}
-            type="text"
-            id="title"
-            name="title"
+            type='text'
+            id='title'
+            name='title'
             value={filterByToEdit.title}
-            placeholder="Search by title"
+            placeholder='Search by title'
           />
         </label>
-        <label htmlFor="maxPrice" className="flex align-center">
+        <label htmlFor='maxPrice' className='flex align-center'>
           {filterByToEdit.maxPrice
             ? `Max Price(${filterByToEdit.maxPrice}):`
             : `Max Price:`}
           <input
             onChange={handleFilters}
-            type="range"
-            min="0"
-            max="500"
-            id="maxPrice"
-            name="maxPrice"
+            type='range'
+            min='0'
+            max='500'
+            id='maxPrice'
+            name='maxPrice'
             value={filterByToEdit.maxPrice}
-            placeholder="Max Price"
+            placeholder='Max Price'
           />
         </label>
       </form>

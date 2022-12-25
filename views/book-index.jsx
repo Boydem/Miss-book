@@ -29,7 +29,7 @@ export function BookIndex() {
   }
 
   return (
-    <section className="book-index">
+    <section className='book-index'>
       {!selectedBook && (
         <div>
           <BookFilter onSetFilter={onSetFilter} />
@@ -37,7 +37,9 @@ export function BookIndex() {
         </div>
       )}
 
-      {selectedBook && <BookDetails book={selectedBook} />}
+      {selectedBook && (
+        <BookDetails book={selectedBook} selectBook={selectBook} />
+      )}
     </section>
   )
 }
