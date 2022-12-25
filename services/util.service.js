@@ -51,7 +51,9 @@ function padNum(num) {
 
 function getDayName(date, locale) {
     date = new Date(date)
-    return date.toLocaleDateString(locale, { weekday: 'long' })
+    return date.toLocaleDateString(locale, {
+        weekday: 'long'
+    })
 }
 
 function getMonthName(date) {
