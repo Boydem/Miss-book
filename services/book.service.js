@@ -55,33 +55,45 @@ function _createBook(title, { amount, isOnSale, currencyCode = "EUR" }) {
 function _createBooks() {
   let books = utilService.loadFromStorage(BOOK_DB)
   if (!books || !books.length) {
-    books = []
-    books.push(
-      _createBook("Puki", {
-        amount: 300,
-        isOnSale: false,
-        currencyCode: "USD",
-      })
-    )
-    books.push(
-      _createBook("Buki", {
-        amount: 120,
-        isOnSale: true,
-      })
-    )
-    books.push(
-      _createBook("subali", {
-        amount: 50,
-        isOnSale: false,
-      })
-    )
-    books.push(
-      _createBook("mitsu", {
-        amount: 200,
-        isOnSale: false,
-      })
-    )
+    fetch('../demo-data/books.json')
+  .then((booksJSON) => booksJSON.json())
+  .then((books) =>{
     utilService.saveToStorage(BOOK_DB, books)
+});
   }
   console.log("creating books...", books)
 }
+
+// function _createBooks() {
+//   let books = utilService.loadFromStorage(BOOK_DB)
+//   if (!books || !books.length) {
+//     books = []
+//     books.push(
+//       _createBook("Puki", {
+//         amount: 300,
+//         isOnSale: false,
+//         currencyCode: "USD",
+//       })
+//     )
+//     books.push(
+//       _createBook("Buki", {
+//         amount: 120,
+//         isOnSale: true,
+//       })
+//     )
+//     books.push(
+//       _createBook("subali", {
+//         amount: 50,
+//         isOnSale: false,
+//       })
+//     )
+//     books.push(
+//       _createBook("mitsu", {
+//         amount: 200,
+//         isOnSale: false,
+//       })
+//     )
+//     utilService.saveToStorage(BOOK_DB, books)
+//   }
+//   console.log("creating books...", books)
+// }

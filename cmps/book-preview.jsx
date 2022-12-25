@@ -12,14 +12,10 @@ export function BookPreview({ book }) {
             <i className="fa-solid fa-share-nodes"></i>
           </button>
         </div>
-        <img
-          className="book-img"
-          src="assets\imgs\adventures-of-Sherlock-Holmes.jpg"
-          alt={book.title}
-        />
+        <img className="book-img" src={book.thumbnail} alt={book.title} />
       </div>
-      <h1 className="book-p-title">Hello {book.title}</h1>
-      <p className="book-p-desc muted">{book.description}</p>
+      <h1 className="book-p-title line-clamp">{book.title}</h1>
+      <p className="book-p-desc muted line-clamp">{book.description}</p>
       <h5 className="book-p-price">
         {book.listPrice.amount}
         {book.listPrice.currencyCode}
