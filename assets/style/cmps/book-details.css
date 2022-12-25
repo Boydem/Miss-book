@@ -51,6 +51,7 @@
 }
 .book-details p {
   font-size: 1em;
+  color: var(--gray3);
 }
 .book-details img {
   border-radius: 0.5em;
