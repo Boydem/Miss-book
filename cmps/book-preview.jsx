@@ -18,9 +18,9 @@ export function BookPreview({ book }) {
           alt={book.title}
         />
       </div>
-      <h1>Hello {book.title}</h1>
-      <p>{book.description}</p>
-      <h5>
+      <h1 className="book-p-title">Hello {book.title}</h1>
+      <p className="book-p-desc muted">{book.description}</p>
+      <h5 className="book-p-price">
         {book.listPrice.amount}
         {book.listPrice.currencyCode}
       </h5>

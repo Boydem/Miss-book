@@ -2,13 +2,30 @@
   border-radius: 0.5em;
   overflow: hidden;
   position: relative;
+  margin-bottom: 1em;
+  box-shadow: 0px 6px 20px -10px black;
+  transition: box-shadow 0.5s 0.2s;
 }
 .book-img {
-  border-radius: 0.5em;
+  position: relative;
+  transform: scale(1);
+  transform-origin: center center;
+  transition: transform 0.5s;
+  z-index: -1;
 }
 .book-preview:hover .book-btns {
   opacity: 1;
   pointer-events: auto;
+}
+.book-preview:hover .book-btns > * {
+  opacity: 1;
+  top: -5px;
+}
+.book-preview:hover .book-img {
+  transform: scale(1.1);
+}
+.book-preview:hover .book-img-overlay {
+  box-shadow: 0px 15px 20px -10px rgba(0, 0, 0, 0.658);
 }
 .book-btns {
   transition: 0.5s opacity;
@@ -22,4 +39,29 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+}
+.book-btns > button {
+  position: relative;
+  top: 5px;
+  opacity: 0;
+  transition: top 0.3s 0.2s, opacity 0.3s 0.2s;
+  background-color: var(--clr1);
+  color: var(--clr1bg);
+  width: calc(1.2em + 12px);
+  height: calc(1.2em + 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2em;
+  font-size: 1.2em;
+}
+
+.book-p-title {
+}
+
+.book-p-desc {
+  margin-bottom: 0.25em;
+}
+
+.book-p-price {
 }
