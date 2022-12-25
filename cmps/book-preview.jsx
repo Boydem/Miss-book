@@ -1,9 +1,12 @@
-export function BookPreview({ book }) {
+export function BookPreview({ book, onBookDetails }) {
   return (
     <article className="book-preview">
       <div className="book-img-overlay">
         <div className="book-btns">
-          <button>
+          <button
+            onClick={() => {
+              onBookDetails(book.id)
+            }}>
             <i className="fa-solid fa-circle-info"></i>
           </button>
           <button>

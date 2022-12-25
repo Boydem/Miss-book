@@ -1,6 +1,7 @@
 const { useState, useEffect } = React
 
 import { bookService } from "../services/book.service.js"
+import { utilsService } from "../services/util.service.js"
 
 export function BookFilter({ onSetFilter }) {
   const [filterByToEdit, setFilterByToEdit] = useState(
@@ -33,8 +34,8 @@ export function BookFilter({ onSetFilter }) {
         </label>
         <label htmlFor="maxPrice" className="flex align-center">
           {filterByToEdit.maxPrice
-            ? `Max Price(${filterByToEdit.maxPrice}): `
-            : `Max Price: `}
+            ? `Max Price(${filterByToEdit.maxPrice}):`
+            : `Max Price:`}
           <input
             onChange={handleFilters}
             type="range"

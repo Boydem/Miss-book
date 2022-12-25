@@ -5,6 +5,7 @@ button {
   border: 0;
   padding: 0.5em 0.8em;
   border-radius: 4px;
+  font-family: "Archivo";
 }
 input[type="text"] {
   padding: 0.5em 1em;
@@ -26,6 +27,7 @@ input,
 input::-webkit-input-placeholder {
   transition: left 0.35s, font-size 0.35s, border 0.5s, background-color 0.5s,
     color 0.15s 0.35s;
+  font-family: "Archivo";
 }
 input::-webkit-input-placeholder {
   left: 1em;
