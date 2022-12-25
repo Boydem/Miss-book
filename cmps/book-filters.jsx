@@ -31,7 +31,10 @@ export function BookFilter({ onSetFilter }) {
             placeholder="Search by title"
           />
         </label>
-        <label htmlFor="maxPrice">
+        <label htmlFor="maxPrice" className="flex align-center">
+          {filterByToEdit.maxPrice
+            ? `Max Price(${filterByToEdit.maxPrice}): `
+            : `Max Price: `}
           <input
             onChange={handleFilters}
             type="range"

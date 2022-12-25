@@ -1,18 +1,73 @@
 button {
-    cursor: pointer;
-    background-color: var(--clr2bg);
-    margin: 0.5em;
-    border: 0;
-    padding: 0.5em 0.8em;
-    border-radius: 4px;   
+  cursor: pointer;
+  background-color: var(--clr2bg);
+  margin: 0.5em;
+  border: 0;
+  padding: 0.5em 0.8em;
+  border-radius: 4px;
 }
-
+input[type="text"] {
+  padding: 0.5em 1em;
+  border-radius: 2em;
+  border: 1px solid var(--gray4);
+  outline: none;
+}
 button:hover {
-    background-color: var(--clr2);
-    color: white;
-    transition: .3s;
+  background-color: var(--clr2);
+  color: var(--clr1);
+  transition: 0.3s;
 }
 input:focus {
-    background-color: var(--clr1bg);
-    transition: background-color 1s;
+  background-color: var(--clr1);
+  color: var(--clr1bg);
+  border: 1px solid var(--clr1bg);
+}
+input,
+input::-webkit-input-placeholder {
+  transition: left 0.35s, font-size 0.35s, border 0.5s, background-color 0.5s,
+    color 0.15s 0.35s;
+}
+input::-webkit-input-placeholder {
+  left: 1em;
+  position: absolute;
+}
+input:focus::-webkit-input-placeholder {
+  transition: left 0.35s, font-size 0.35s, border 0.5s, background-color 0.5s,
+    color 0.15s 0.35s;
+
+  position: absolute;
+  left: 50%;
+  color: var(--clr1bg);
+  font-size: 0.85rem;
+}
+
+/* RANGE INPUTS */
+
+input[type="range"] {
+  -webkit-appearance: none;
+  border: 1px solid var(--clr1);
+  height: 10px;
+  background: rgb(255, 255, 255);
+  border-radius: 5px;
+  background-image: linear-gradient(var(--gray4), var(--gray4));
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 1.25rem;
+  width: 1.25rem;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.384);
+  background: var(--clr1bg);
+  cursor: ew-resize;
+  transition: background 0.3s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
 }
