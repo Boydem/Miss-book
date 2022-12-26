@@ -168,7 +168,7 @@ export function BookEdit() {
           />
         </div>
         <button type='submit'>{!bookId ? "Add Book" : "Save"}</button>
-        <Link to='/book'>Cancel</Link>
+        <Link to={!bookId ? "/book" : `/book/${bookId}`}>Cancel</Link>
       </form>
     </section>
   )
