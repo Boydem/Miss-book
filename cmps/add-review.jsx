@@ -21,7 +21,7 @@ export function AddReview({ book, addBookReview }) {
   const ratingStars = [0, 0, 0, 0, 0]
   return (
     <section className='book-review'>
-      <h1>Write review</h1>
+      <h2>Reviews</h2>
       <form onSubmit={onAddReview}>
         <div className='form-group'>
           <label htmlFor='fullname'>Full Name </label>

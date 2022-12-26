@@ -5,3 +5,45 @@
 .star:hover {
   color: green;
 }
+
+.book-review {
+  border-top: 1px solid var(--gray4);
+  border-bottom: 1px solid var(--gray4);
+  padding: 1.25em 0;
+  margin-bottom: 1.5em;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  align-items: center;
+  gap: 2em;
+}
+.book-review h2 {
+  text-align: center;
+  color: var(--gray3);
+  font-weight: 500;
+  font-size: 1.5em;
+  flex-basis: 260px;
+}
+.book-review form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+.book-review form > *:not(:last-child) {
+  margin-block-end: 0.5rem;
+}
+.form-group {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+}
+.reviews {
+  grid-column: 1/-1;
+}
+.book-review button {
+  margin: 1em 0 0;
+  background-color: var(--clr1bg);
+  color: white;
+  width: 100%;
+}

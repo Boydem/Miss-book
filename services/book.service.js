@@ -15,6 +15,7 @@ export const bookService = {
   removeReview
 }
 
+
 function removeReview(bookId,revId){
   return get(bookId).then(book=>{
     const revIdx = book.reviews.findIndex(rev=>rev.id===revId)

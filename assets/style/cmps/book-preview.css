@@ -6,6 +6,20 @@
   box-shadow: 0px 6px 20px -10px black;
   transition: box-shadow 0.5s 0.2s;
 }
+.add-book {
+  height: 100%;
+  position: relative;
+}
+.add-book .book-btns {
+  border-radius: 0.5em;
+  background-color: var(--gray4);
+}
+.add-book .book-btns,
+.add-book .book-btns > * {
+  inset: 0;
+  margin: auto;
+  opacity: 1;
+}
 .book-img {
   position: relative;
   transform: scale(1);

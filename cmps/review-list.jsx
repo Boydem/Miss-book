@@ -11,19 +11,20 @@ export function ReviewList({ book, onRemoveReview }) {
       </div>
     )
   return (
-    <ul className='book-list clean-list'>
+    <ul className='review-list clean-list'>
       {book.reviews.map((review) => {
         return (
           <li key={`${review.id}`}>
             <button
+              className='absolute-i-btn'
               onClick={() => {
                 onRemoveReview(book.id, review.id)
               }}>
-              X
+              <i className='fa-regular fa-trash-can'></i>
             </button>
-            <h3>{review.fullname}</h3>
-            <h4>{review.rating}</h4>
-            <p>{review.readAt}</p>
+            <h3 className='rev-name'>Full Name: {review.fullname}</h3>
+            <h4 className='rev-rate'>Rate: {review.rating}</h4>
+            <p className='rev-read-at'>Read At: {review.readAt}</p>
           </li>
         )
       })}

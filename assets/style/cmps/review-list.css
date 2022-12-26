@@ -1,0 +1,45 @@
+.review-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 30px;
+}
+.review-list > * {
+  /* width: fit-content; */
+  border: 1px var(--gray4) solid;
+  border-radius: 0em;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 1.25em 2em;
+}
+.review-list .rev-read-at,
+.review-list h4.rev-rate {
+  margin: 0;
+}
+.review-list .rev-name {
+  font-weight: 500;
+  font-size: 1rem;
+}
+.review-list .rev-read-at {
+  color: var(--gray2);
+  font-size: 0.85rem;
+  margin-top: 0.25em;
+}
+.review-list h4.rev-rate {
+  font-size: 1rem;
+  color: var(--gray3);
+}
+/* .book-list button {
+  border-radius: 3em;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  vertical-align: middle;
+  top: 0;
+  right: 0;
+  position: absolute;
+} */

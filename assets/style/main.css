@@ -8,6 +8,7 @@
 @import "base/layout.css";
 @import "base/forms.css";
 @import "base/tags.css";
+@import "base/buttons.css";
 
 /* Components */
 @import "cmps/app-header.css";
@@ -18,3 +19,4 @@
 @import "cmps/book-details.css";
 @import "cmps/loader.css";
 @import "cmps/add-review.css";
+@import "cmps/review-list.css";

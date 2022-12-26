@@ -1,0 +1,14 @@
+.absolute-i-btn {
+  border-radius: 3em;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  vertical-align: middle;
+  top: 0;
+  right: 0;
+  position: absolute;
+}
