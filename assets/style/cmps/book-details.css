@@ -107,4 +107,12 @@
     top: 3rem;
     left: 1rem;
   }
+  .details-btns {
+    grid-column: 1/-1;
+    width: 100%;
+  }
+  .btn-edit {
+    right: 1rem;
+    left: unset;
+  }
 }
