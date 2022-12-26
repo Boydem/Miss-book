@@ -27,13 +27,14 @@ export function BookDetails() {
       })
   }
 
-  function onRemoveReview(bookId) {
-    console.log("bookId:", bookId)
+  function onRemoveReview(bookId, revId) {
+    bookService.removeReview(bookId, revId).then(() => {
+      loadBook()
+    })
   }
 
   function addBookReview(bookId, review) {
-    bookService.addReview(bookId, review).then((book) => {
-      console.log("book:", book)
+    bookService.addReview(bookId, review).then(() => {
       loadBook()
     })
   }

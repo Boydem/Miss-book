@@ -13,7 +13,12 @@ export function ReviewList({ book, onRemoveReview }) {
       {book.reviews.map((review) => {
         return (
           <li key={`${review.id}`}>
-            <button onClick={onRemoveReview}>X</button>
+            <button
+              onClick={() => {
+                onRemoveReview(book.id, review.id)
+              }}>
+              X
+            </button>
             <h3>{review.fullname}</h3>
             <h4>{review.rating}</h4>
             <p>{review.readAt}</p>

@@ -11,7 +11,16 @@ export const bookService = {
   save, // Update/Create
   getDefaultFilter,
   getEmptyBook,
-  addReview
+  addReview,
+  removeReview
+}
+
+function removeReview(bookId,revId){
+  return get(bookId).then(book=>{
+    const revIdx = book.reviews.findIndex(rev=>rev.id===revId)
+    book.reviews.splice(revIdx,1)
+    return save(book)
+  })
 }
 
 function addReview(bookId,review){
