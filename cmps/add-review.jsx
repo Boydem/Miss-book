@@ -1,6 +1,6 @@
 const { useState } = React
 
-export function AddReview({ book }) {
+export function AddReview({ book, addBookReview }) {
   const [reviewToEdit, setReviewToEdit] = useState({
     fullname: "",
     rating: "",
@@ -13,13 +13,16 @@ export function AddReview({ book }) {
     setReviewToEdit((prevReview) => ({ ...prevReview, [field]: value }))
   }
 
-  console.log("reviewToEdit:", reviewToEdit)
+  function onAddReview(ev) {
+    ev.preventDefault()
+    addBookReview(book.id, reviewToEdit)
+  }
 
   const ratingStars = [0, 0, 0, 0, 0]
   return (
     <section className='book-review'>
       <h1>Write review</h1>
-      <form>
+      <form onSubmit={onAddReview}>
         <div className='form-group'>
           <label htmlFor='fullname'>Full Name </label>
           <input
@@ -62,6 +65,7 @@ export function AddReview({ book }) {
           <label htmlFor='reatAt'>Read at </label>
           <input onChange={handleForm} type='date' name='readAt' id='readAt' />
         </div>
+        <button type='submit'>Add Review</button>
       </form>
     </section>
   )

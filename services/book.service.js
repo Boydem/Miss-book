@@ -10,7 +10,20 @@ export const bookService = {
   remove, // Delete
   save, // Update/Create
   getDefaultFilter,
-  getEmptyBook
+  getEmptyBook,
+  addReview
+}
+
+function addReview(bookId,review){
+  return get(bookId).then((book)=>{
+    review.id = utilService.makeId()
+    if(!book.reviews||!book.reviews.length){
+     book.reviews = [review] 
+    }else{
+      book.reviews.unshift(review)
+    }
+    return save(book)
+  })
 }
 
 function getEmptyBook(title = '',price = ''){

@@ -2,6 +2,7 @@ const { useParams, useNavigate } = ReactRouterDOM
 const { useEffect, useState } = React
 
 import { AddReview } from "../cmps/add-review.jsx"
+import { ReviewList } from "../cmps/review-list.jsx"
 import { bookService } from "../services/book.service.js"
 import { Loader } from "./loader.jsx"
 
@@ -24,6 +25,17 @@ export function BookDetails() {
         console.log(err, " had issue in BookDetails cmp")
         navigate("/book")
       })
+  }
+
+  function onRemoveReview(bookId) {
+    console.log("bookId:", bookId)
+  }
+
+  function addBookReview(bookId, review) {
+    bookService.addReview(bookId, review).then((book) => {
+      console.log("book:", book)
+      loadBook()
+    })
   }
 
   function onGoBack() {
@@ -92,7 +104,10 @@ export function BookDetails() {
           {book.listPrice.currencyCode}
         </h3>
       </div>
-      <AddReview book={book} />
+      <div className='reviews'>
+        <AddReview book={book} addBookReview={addBookReview} />
+        <ReviewList book={book} onRemoveReview={onRemoveReview} />
+      </div>
     </section>
   )
 }

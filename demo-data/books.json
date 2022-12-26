@@ -19,7 +19,12 @@
       "amount": 109,
       "currencyCode": "EUR",
       "isOnSale": false
-    }
+    },
+    "reviews":[
+      { "id": "XeMG8Nskc","fullname":"noam","rating":5,"readAt":"26/12/2022"},
+      { "id": "OMG8wNskc","fullname":"tamir","rating":4,"readAt":"20/10/2022"},
+      { "id": "OMG8wNsc","fullname":"dana","rating":3,"readAt":"11/21/2020"}
+    ]
   },
   {
     "id": "JYOJa2NpSCq",
