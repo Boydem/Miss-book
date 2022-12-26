@@ -3,9 +3,11 @@ import { BookPreview } from "./book-preview.jsx"
 export function ReviewList({ book, onRemoveReview }) {
   if (!book.reviews)
     return (
-      <div className='prev-err'>
-        <i className='fa-solid fa-exclamation'></i> Couldnt find matching
-        results
+      <div className='err-wrapper'>
+        <div className='prev-err'>
+          <i className='fa-solid fa-exclamation'></i> Couldnt find any previous
+          reviews
+        </div>
       </div>
     )
   return (

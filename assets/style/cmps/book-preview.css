@@ -101,6 +101,10 @@
   margin-inline-end: 0.5em;
   border-radius: 50%;
 }
+.err-wrapper {
+  padding: 3em;
+  position: relative;
+}
 .prev-err {
   position: absolute;
   top: 50%;
