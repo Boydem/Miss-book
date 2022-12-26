@@ -11,13 +11,10 @@ export function BookEdit() {
   const { bookId } = useParams()
   // useEffect(() => {}, [bookToEdit])
 
-  function onSaveBook(ev) {
-    ev.preventDefault()
-    bookService.save(bookToEdit).then((book) => {
-      navigate("/book")
-      console.log("book:", book)
-    })
-  }
+  useEffect(() => {
+    if (!bookId) return
+    loadBook()
+  }, [])
 
   useEffect(() => {
     if (!checked.name) return
@@ -25,6 +22,26 @@ export function BookEdit() {
       target: { type: "checkbox", name: checked.name, value: checked.isOn },
     })
   }, [checked])
+
+  function loadBook() {
+    bookService
+      .get(bookId)
+      .then((book) => {
+        setBookToEdit(book)
+      })
+      .catch((err) => {
+        console.log(err, " had issue in BookDetails cmp")
+        navigate("/book")
+      })
+  }
+
+  function onSaveBook(ev) {
+    ev.preventDefault()
+    bookService.save(bookToEdit).then((book) => {
+      navigate("/book")
+      console.log("book:", book)
+    })
+  }
 
   function handleForm({ target }) {
     const listPriceFields = ["amount", "isOnSale", "currencyCode"]
@@ -50,7 +67,7 @@ export function BookEdit() {
   // console.log("bookToEdit:", bookToEdit)
   return (
     <section className='book-edit'>
-      <h2>Add book</h2>
+      <h2>{!bookId ? "Add Book" : "Edit Book"}</h2>
       <form onSubmit={onSaveBook}>
         <div className='form-group'>
           <label htmlFor='title'>Book title </label>
@@ -109,7 +126,7 @@ export function BookEdit() {
             id='publishedDate'
             placeholder='Enter published year'
             onChange={handleForm}
-            value={bookToEdit.amount}
+            value={bookToEdit.publishedDate}
           />
         </div>
         <div className='form-group'>
@@ -121,25 +138,24 @@ export function BookEdit() {
             id='pageCount'
             placeholder='Enter pages count'
             onChange={handleForm}
-            value={bookToEdit.amount}
+            value={bookToEdit.pageCount}
           />
         </div>
         <div className='form-group'>
-          <label htmlFor='price'>Price </label>
+          <label htmlFor='amount'>Price </label>
           <input
             required
             type='number'
             name='amount'
-            id='price'
+            id='amount'
             placeholder='Enter price'
             onChange={handleForm}
-            value={bookToEdit.amount}
+            value={bookToEdit.listPrice.amount}
           />
         </div>
         <div className='form-group'>
           <label htmlFor='isOnSale'>Book on sale ? </label>
           <input
-            required
             type='checkbox'
             name='isOnSale'
             id='isOnSale'
@@ -148,11 +164,11 @@ export function BookEdit() {
             onChange={() =>
               setChecked({ isOn: !checked.isOn, name: "isOnSale" })
             }
-            value={bookToEdit.amount}
+            value={bookToEdit.listPrice.isOnSale}
           />
         </div>
-        <button type='submit'>Add Book</button>
-        <button type='button'>Cancel</button>
+        <button type='submit'>{!bookId ? "Add Book" : "Save"}</button>
+        <Link to='/book'>Cancel</Link>
       </form>
     </section>
   )

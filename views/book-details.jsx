@@ -1,4 +1,4 @@
-const { useParams, useNavigate } = ReactRouterDOM
+const { Link, useParams, useNavigate } = ReactRouterDOM
 const { useEffect, useState } = React
 
 import { AddReview } from "../cmps/add-review.jsx"
@@ -67,9 +67,14 @@ export function BookDetails() {
 
   return (
     <section className='book-details'>
-      <button className='btn-back' onClick={onGoBack}>
-        <i className='fa-solid fa-arrow-left'></i>
-      </button>
+      <div className='details-btns flex align-center justify-between'>
+        <button className='btn-back' onClick={onGoBack}>
+          <i className='fa-solid fa-arrow-left'></i>
+        </button>
+        <Link className='btn-edit btn-back' to={`/book/edit/${book.id}`}>
+          <i className='fa-regular fa-pen-to-square'></i>
+        </Link>
+      </div>
       <img className='book-img' src={book.thumbnail} alt={book.title} />
       <div className='txt-wrapper'>
         <h1 className='book-d-title'>{book.title}</h1>

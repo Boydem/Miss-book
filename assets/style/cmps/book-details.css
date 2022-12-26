@@ -85,6 +85,9 @@
   background-color: transparent;
   color: var(--clr1bg);
 }
+.details-btns {
+  width: 100%;
+}
 @media (min-width: 760px) {
   .book-details {
     display: grid;
