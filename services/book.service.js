@@ -9,7 +9,12 @@ export const bookService = {
   get, // Read
   remove, // Delete
   save, // Update/Create
-  getDefaultFilter
+  getDefaultFilter,
+  getEmptyBook
+}
+
+function getEmptyBook(title = '',price = ''){
+    return {title, price}
 }
 
 function getDefaultFilter() {
@@ -47,7 +52,6 @@ function save(book) {
 
 function _createBook(title, { amount, isOnSale, currencyCode = "EUR" }) {
   return {
-    id: utilService.makeId(),
     title,
     description: "placerat nisi sodales suscipit tellus",
     thumbnail: "http://ca.org/books-photos/20.jpg",

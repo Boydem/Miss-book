@@ -1,6 +1,7 @@
 const { useParams, useNavigate } = ReactRouterDOM
 const { useEffect, useState } = React
 
+import { AddReview } from "../cmps/add-review.jsx"
 import { bookService } from "../services/book.service.js"
 import { Loader } from "./loader.jsx"
 
@@ -48,14 +49,16 @@ export function BookDetails() {
       return <span className='tag light-tag'>New</span>
     }
   }
+
   if (!book) return <Loader />
+
   return (
     <section className='book-details'>
+      <button className='btn-back' onClick={onGoBack}>
+        <i className='fa-solid fa-arrow-left'></i>
+      </button>
       <img className='book-img' src={book.thumbnail} alt={book.title} />
       <div className='txt-wrapper'>
-        <button className='btn-back' onClick={onGoBack}>
-          <i className='fa-solid fa-arrow-left'></i>
-        </button>
         <h1 className='book-d-title'>{book.title}</h1>
         <h2 className='book-d-subtitle'>{book.subtitle}</h2>
         <hr />
@@ -89,6 +92,7 @@ export function BookDetails() {
           {book.listPrice.currencyCode}
         </h3>
       </div>
+      <AddReview book={book} />
     </section>
   )
 }

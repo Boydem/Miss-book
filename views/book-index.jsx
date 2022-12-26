@@ -27,6 +27,20 @@ export function BookIndex() {
     })
   }
 
+  function onRemoveBook(bookId) {
+    bookService
+      .remove(bookId)
+      .then(() => {
+        const updatedBooks = books.filter((book) => book.id !== bookId)
+        setBooks(updatedBooks)
+        showSuccessMsg("Book removed")
+      })
+      .catch((err) => {
+        console.log("Had issues removing", err)
+        showErrorMsg("Could not remove car, try again please!")
+      })
+  }
+
   function onSetFilter(filterBy) {
     setFilterBy(filterBy)
     showSuccessMsg(
@@ -40,7 +54,7 @@ export function BookIndex() {
     <section className='book-index'>
       <div>
         <BookFilter onSetFilter={onSetFilter} />
-        {!isLoading && <BookList books={books} />}
+        {!isLoading && <BookList books={books} onRemoveBook={onRemoveBook} />}
         {isLoading && <Loader />}
       </div>
     </section>

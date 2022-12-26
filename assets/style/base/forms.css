@@ -9,7 +9,7 @@ button {
   font-family: "Archivo";
   transition: color 0.3s, background-color 0.3s;
 }
-input[type="text"] {
+input {
   padding: 0.5em 1em;
   border-radius: 2em;
   border: 1px solid var(--gray4);

@@ -1,0 +1,7 @@
+.star {
+  display: inline-block;
+}
+
+.star:hover {
+  color: green;
+}

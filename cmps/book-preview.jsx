@@ -1,6 +1,6 @@
 const { Link, NavLink } = ReactRouterDOM
 
-export function BookPreview({ book }) {
+export function BookPreview({ book, onRemoveBook }) {
   return (
     <article className={`book-preview`}>
       <div className='book-img-overlay'>
@@ -8,14 +8,15 @@ export function BookPreview({ book }) {
           <div className='book-p-sale-tag'>Sale!</div>
         )}
         <div className='book-btns'>
-          <button>
-            <Link to={`/book/${book.id}`}>
-              <i className='fa-solid fa-info'></i>
-            </Link>
-          </button>
-          <button>
+          <Link to={`/book/${book.id}`}>
+            <i className='fa-solid fa-info'></i>
+          </Link>
+          <a
+            onClick={() => {
+              onRemoveBook(book.id)
+            }}>
             <i className='fa-regular fa-trash-can'></i>
-          </button>
+          </a>
         </div>
         <img className='book-img' src={book.thumbnail} alt={book.title} />
       </div>
