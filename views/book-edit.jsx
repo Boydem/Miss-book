@@ -1,38 +1,158 @@
-import { bookService } from "../services/book.service.js"
-
 const { useState, useEffect } = React
+const { useNavigate, useParams, Link } = ReactRouterDOM
+
+import { bookService } from "../services/book.service.js"
+import { eventBusService } from "../services/event-bus.service.js"
 
 export function BookEdit() {
+  const [checked, setChecked] = useState({ isOn: false, name: "" })
   const [bookToEdit, setBookToEdit] = useState(bookService.getEmptyBook())
-
+  const navigate = useNavigate()
+  const { bookId } = useParams()
   // useEffect(() => {}, [bookToEdit])
 
+  function onSaveBook(ev) {
+    ev.preventDefault()
+    bookService.save(bookToEdit).then((book) => {
+      navigate("/book")
+      console.log("book:", book)
+    })
+  }
+
+  useEffect(() => {
+    if (!checked.name) return
+    handleForm({
+      target: { type: "checkbox", name: checked.name, value: checked.isOn },
+    })
+  }, [checked])
+
   function handleForm({ target }) {
+    const listPriceFields = ["amount", "isOnSale", "currencyCode"]
     let { type, name: field, value } = target
     value = type === "number" ? +value : value
-    setBookToEdit((prevBook) => ({ ...prevBook, [field]: value }))
+    if (listPriceFields.includes(field)) {
+      setBookToEdit((prevBook) => {
+        prevBook.listPrice[field] = value
+        return { ...prevBook }
+      })
+    } else {
+      if (field === "categories") {
+        console.log("categories:", value.split(","))
+        setBookToEdit((prevBook) => ({
+          ...prevBook,
+          [field]: value.split(","),
+        }))
+      } else {
+        setBookToEdit((prevBook) => ({ ...prevBook, [field]: value }))
+      }
+    }
   }
-  console.log("bookToEdit:", bookToEdit)
+  // console.log("bookToEdit:", bookToEdit)
   return (
     <section className='book-edit'>
-      <h1>Hello from Book Edit</h1>
-      <form>
-        <input
-          type='text'
-          name='title'
-          id='bookTitle'
-          placeholder='Enter Book Title'
-          onChange={handleForm}
-          value={bookToEdit.title}
-        />
-        <input
-          type='number'
-          name='price'
-          id='bookPrice'
-          placeholder='Enter Book Price'
-          onChange={handleForm}
-          value={bookToEdit.price}
-        />
+      <h2>Add book</h2>
+      <form onSubmit={onSaveBook}>
+        <div className='form-group'>
+          <label htmlFor='title'>Book title </label>
+          <input
+            required
+            type='text'
+            name='title'
+            id='title'
+            placeholder='Enter book title'
+            onChange={handleForm}
+            value={bookToEdit.title}
+          />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='subtitle'>Book subtitle </label>
+          <input
+            required
+            type='text'
+            name='subtitle'
+            id='subtitle'
+            placeholder='Enter book subtitle'
+            onChange={handleForm}
+            value={bookToEdit.subtitle}
+          />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='categories'>Book Categories </label>
+          <input
+            required
+            type='text'
+            name='categories'
+            id='categories'
+            placeholder='*Seperated with comma( , )'
+            onChange={handleForm}
+            value={bookToEdit.categories}
+          />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='language'>Book language </label>
+          <input
+            required
+            type='text'
+            name='language'
+            id='language'
+            placeholder='Enter book language'
+            onChange={handleForm}
+            value={bookToEdit.language}
+          />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='publishedDate'>Published year </label>
+          <input
+            required
+            type='number'
+            name='publishedDate'
+            id='publishedDate'
+            placeholder='Enter published year'
+            onChange={handleForm}
+            value={bookToEdit.amount}
+          />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='pageCount'>Pages count </label>
+          <input
+            required
+            type='number'
+            name='pageCount'
+            id='pageCount'
+            placeholder='Enter pages count'
+            onChange={handleForm}
+            value={bookToEdit.amount}
+          />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='price'>Price </label>
+          <input
+            required
+            type='number'
+            name='amount'
+            id='price'
+            placeholder='Enter price'
+            onChange={handleForm}
+            value={bookToEdit.amount}
+          />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='isOnSale'>Book on sale ? </label>
+          <input
+            required
+            type='checkbox'
+            name='isOnSale'
+            id='isOnSale'
+            placeholder='Enter isOnSale'
+            defaultChecked={checked.isOn}
+            onChange={() =>
+              setChecked({ isOn: !checked.isOn, name: "isOnSale" })
+            }
+            value={bookToEdit.amount}
+          />
+        </div>
+        <button type='submit'>Add Book</button>
+        <button type='button'>Cancel</button>
       </form>
     </section>
   )

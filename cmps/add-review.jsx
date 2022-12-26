@@ -29,6 +29,7 @@ export function AddReview({ book, addBookReview }) {
             type='text'
             name='fullname'
             id='fullname'
+            required
             placeholder='Full Name'
             onChange={handleForm}
             value={reviewToEdit.fullname}
@@ -40,6 +41,9 @@ export function AddReview({ book, addBookReview }) {
             type='number'
             name='rating'
             id='rating'
+            min={1}
+            max={5}
+            required
             placeholder='Enter Rating'
             onChange={handleForm}
             value={reviewToEdit.rating}
@@ -63,7 +67,13 @@ export function AddReview({ book, addBookReview }) {
         </div>
         <div className='form-group'>
           <label htmlFor='reatAt'>Read at </label>
-          <input onChange={handleForm} type='date' name='readAt' id='readAt' />
+          <input
+            onChange={handleForm}
+            required
+            type='date'
+            name='readAt'
+            id='readAt'
+          />
         </div>
         <button type='submit'>Add Review</button>
       </form>

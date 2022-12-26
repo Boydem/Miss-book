@@ -36,8 +36,13 @@ function addReview(bookId,review){
   })
 }
 
-function getEmptyBook(title = '',price = ''){
-    return {title, price}
+function getEmptyBook(title = ''){
+    return {
+      title,
+      listPrice:{ amount :0, isOnSale : false, currencyCode : "EUR" },
+      description:utilService.makeLorem(35),
+      thumbnail:"http://coding-academy.org/books-photos/2.jpg",
+    }
 }
 
 function getDefaultFilter() {

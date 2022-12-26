@@ -49,7 +49,6 @@ export function BookIndex() {
       }`
     )
   }
-  console.log("books:", books)
   return (
     <section className='book-index'>
       <div>

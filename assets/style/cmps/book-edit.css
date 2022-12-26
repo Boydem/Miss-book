@@ -1,0 +1,11 @@
+.book-edit {
+  padding: 1em 0;
+  max-width: 500px;
+  margin: auto;
+}
+.book-edit h2 {
+  margin-bottom: 0.75em;
+}
+.book-edit form > *:not(:last-child) {
+  margin-bottom: 1em;
+}
