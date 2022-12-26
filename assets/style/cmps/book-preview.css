@@ -21,6 +21,9 @@
   opacity: 1;
   top: -5px;
 }
+.book-preview:hover .book-p-title {
+  color: var(--clr1bg);
+}
 .book-preview:hover .book-img {
   transform: scale(1.1);
 }
@@ -44,7 +47,8 @@
   position: relative;
   top: 5px;
   opacity: 0;
-  transition: top 0.3s 0.2s, opacity 0.3s 0.2s;
+  transition: top 0.3s 0.2s, opacity 0.3s 0.2s, color 0.3s,
+    background-color 0.3s;
   background-color: var(--clr1);
   color: var(--clr1bg);
   width: calc(1.2em + 12px);
@@ -56,9 +60,15 @@
   font-size: 1.2em;
 }
 
+.book-btns > button:hover {
+  background-color: var(--clr1bg);
+  color: var(--clr1);
+}
+
 .book-p-title {
-  font-size: 1.25rem;
-  font-weight: 300;
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: 0.3s color;
 }
 
 .book-p-desc {
@@ -78,5 +88,21 @@
   padding: 0.15em 0.35em;
   border-radius: 0.25em;
   color: var(--clr1);
-  z-index: 2;
+  z-index: 1;
+}
+.prev-err i {
+  color: white;
+  background-color: rgb(202, 69, 69);
+  width: 1.6em;
+  height: 1.6em;
+  line-height: 1.6em;
+  margin-inline-end: 0.5em;
+  border-radius: 50%;
+}
+.prev-err {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }

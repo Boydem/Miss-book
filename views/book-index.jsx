@@ -1,45 +1,48 @@
 const { useState, useEffect } = React
 
-import { BookDetails } from "../cmps/book-details.jsx"
+import { bookService } from "../services/book.service.js"
+import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"
+
 import { BookFilter } from "../cmps/book-filters.jsx"
 import { BookList } from "../cmps/book-list.jsx"
-
-import { bookService } from "../services/book.service.js"
+import { Loader } from "../cmps/loader.jsx"
 
 export function BookIndex() {
-  const [selectedBook, selectBook] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
   const [books, setBooks] = useState([])
   const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
   useEffect(() => {
+    setIsLoading(true)
     loadBooks()
   }, [filterBy])
 
   function loadBooks() {
-    bookService.query(filterBy).then((books) => setBooks(books))
+    bookService.query(filterBy).then((books) => {
+      setIsLoading(false)
+      setBooks(books)
+      if (!books.length) {
+        showErrorMsg(`Couldnt Find Results`)
+      }
+    })
   }
 
   function onSetFilter(filterBy) {
     setFilterBy(filterBy)
+    showSuccessMsg(
+      `Title:${filterBy.title ? filterBy.title : "All"}, Max Price:${
+        filterBy.maxPrice
+      }`
+    )
   }
-
-  function onBookDetails(bookId) {
-    bookService.get(bookId)
-    selectBook(books.find((book) => bookId === book.id))
-  }
-
+  console.log("books:", books)
   return (
     <section className='book-index'>
-      {!selectedBook && (
-        <div>
-          <BookFilter onSetFilter={onSetFilter} />
-          <BookList onBookDetails={onBookDetails} books={books} />
-        </div>
-      )}
-
-      {selectedBook && (
-        <BookDetails book={selectedBook} selectBook={selectBook} />
-      )}
+      <div>
+        <BookFilter onSetFilter={onSetFilter} />
+        {!isLoading && <BookList books={books} />}
+        {isLoading && <Loader />}
+      </div>
     </section>
   )
 }

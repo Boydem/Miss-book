@@ -1,20 +1,20 @@
-export function BookPreview({ book, onBookDetails }) {
-  console.log("book:", book)
+const { Link, NavLink } = ReactRouterDOM
+
+export function BookPreview({ book }) {
   return (
-    <article className='book-preview'>
+    <article className={`book-preview`}>
       <div className='book-img-overlay'>
         {book.listPrice.isOnSale && (
           <div className='book-p-sale-tag'>Sale!</div>
         )}
         <div className='book-btns'>
-          <button
-            onClick={() => {
-              onBookDetails(book.id)
-            }}>
-            <i className='fa-solid fa-circle-info'></i>
+          <button>
+            <Link to={`/book/${book.id}`}>
+              <i className='fa-solid fa-info'></i>
+            </Link>
           </button>
           <button>
-            <i className='fa-solid fa-share-nodes'></i>
+            <i className='fa-regular fa-trash-can'></i>
           </button>
         </div>
         <img className='book-img' src={book.thumbnail} alt={book.title} />

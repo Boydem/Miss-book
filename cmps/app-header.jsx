@@ -1,39 +1,28 @@
-export function AppHeader({ setPage }) {
+const { NavLink } = ReactRouterDOM
+
+export function AppHeader() {
   return (
     <header className='app-header full main-layout'>
       <div className='container flex justify-between align-center'>
-        <h1>Hello Book Shop</h1>
+        <h1>
+          ByTheBook <i className='fa-solid fa-book'></i>
+        </h1>
         <nav className='main-nav'>
           <ul className='nav-links clean-list flex align-center'>
             <li key={"home"}>
-              <a
-                onClick={() => {
-                  setPage("home")
-                }}
-                href='#'
-                className='nav-link'>
+              <NavLink to='/' className='nav-link'>
                 Home
-              </a>
+              </NavLink>
             </li>
             <li key={"about"}>
-              <a
-                onClick={() => {
-                  setPage("about")
-                }}
-                href='#'
-                className='nav-link'>
-                about
-              </a>
+              <NavLink to='/about' className='nav-link'>
+                About
+              </NavLink>
             </li>
             <li key={"book"}>
-              <a
-                onClick={() => {
-                  setPage("book")
-                }}
-                href='#'
-                className='nav-link'>
-                book
-              </a>
+              <NavLink to='/book' className='nav-link'>
+                Books
+              </NavLink>
             </li>
           </ul>
         </nav>

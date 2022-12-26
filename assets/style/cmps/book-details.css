@@ -60,8 +60,20 @@
   margin-top: auto;
   text-align: end;
   font-size: 1.33rem;
+  color: var(--clr1bg);
 }
 .btn-back {
+  position: relative;
+  padding-left: 0px;
   align-self: flex-start;
   margin: 0 0 auto;
+  background-color: transparent;
+  padding: 0;
+  font-size: 1.33rem;
+  transition: padding-left 0.3s;
+}
+.btn-back:hover {
+  padding-left: 5px;
+  background-color: transparent;
+  color: var(--clr1bg);
 }

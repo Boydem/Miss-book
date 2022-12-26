@@ -1,4 +1,34 @@
-export function BookDetails({ book, selectBook }) {
+const { useParams, useNavigate } = ReactRouterDOM
+const { useEffect, useState } = React
+
+import { bookService } from "../services/book.service.js"
+import { Loader } from "./loader.jsx"
+
+export function BookDetails() {
+  const [book, setBook] = useState(null)
+  const params = useParams()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    loadBook()
+  }, [])
+
+  function loadBook() {
+    bookService
+      .get(params.bookId)
+      .then((book) => {
+        setBook(book)
+      })
+      .catch((err) => {
+        console.log(err, " had issue in BookDetails cmp")
+        navigate("/book")
+      })
+  }
+
+  function onGoBack() {
+    navigate("/book")
+  }
+
   function getPageCountTag(pageCount) {
     if (pageCount > 500) {
       return <span className='tag serious-tag'>Serious reading</span>
@@ -18,16 +48,13 @@ export function BookDetails({ book, selectBook }) {
       return <span className='tag light-tag'>New</span>
     }
   }
+  if (!book) return <Loader />
   return (
     <section className='book-details'>
       <img className='book-img' src={book.thumbnail} alt={book.title} />
       <div className='txt-wrapper'>
-        <button
-          className='btn-back'
-          onClick={() => {
-            selectBook(null)
-          }}>
-          Back
+        <button className='btn-back' onClick={onGoBack}>
+          <i className='fa-solid fa-arrow-left'></i>
         </button>
         <h1 className='book-d-title'>{book.title}</h1>
         <h2 className='book-d-subtitle'>{book.subtitle}</h2>
