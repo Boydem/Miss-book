@@ -12,6 +12,9 @@ export function AddReview({ book }) {
     value = type === "number" ? +value : value
     setReviewToEdit((prevReview) => ({ ...prevReview, [field]: value }))
   }
+
+  console.log("reviewToEdit:", reviewToEdit)
+
   const ratingStars = [0, 0, 0, 0, 0]
   return (
     <section className='book-review'>
@@ -57,7 +60,7 @@ export function AddReview({ book }) {
         </div>
         <div className='form-group'>
           <label htmlFor='reatAt'>Read at </label>
-          <input type='date' name='readAt' id='readAt' />
+          <input onChange={handleForm} type='date' name='readAt' id='readAt' />
         </div>
       </form>
     </section>
