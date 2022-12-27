@@ -1,4 +1,4 @@
-const { Link, NavLink } = ReactRouterDOM
+const { Link } = ReactRouterDOM
 import { BookPreview } from "./book-preview.jsx"
 
 export function BookList({ books, onRemoveBook, onAddBook }) {

@@ -1,5 +1,3 @@
-import { BookPreview } from "./book-preview.jsx"
-
 export function ReviewList({ book, onRemoveReview }) {
   if (!book.reviews)
     return (
@@ -18,7 +16,7 @@ export function ReviewList({ book, onRemoveReview }) {
             <button
               className='absolute-i-btn'
               onClick={() => {
-                onRemoveReview(book.id, review.id)
+                onRemoveReview(book, review.id)
               }}>
               <i className='fa-regular fa-trash-can'></i>
             </button>

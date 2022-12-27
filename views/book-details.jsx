@@ -1,5 +1,5 @@
-const { Link, useParams, useNavigate } = ReactRouterDOM
 const { useEffect, useState } = React
+const { Link, useParams, useNavigate } = ReactRouterDOM
 
 import { AddReview } from "../cmps/add-review.jsx"
 import { ReviewList } from "../cmps/review-list.jsx"
@@ -13,7 +13,7 @@ export function BookDetails() {
 
   useEffect(() => {
     loadBook()
-  }, [])
+  }, [params.bookId])
 
   function loadBook() {
     bookService
@@ -27,20 +27,26 @@ export function BookDetails() {
       })
   }
 
-  function onRemoveReview(bookId, revId) {
-    bookService.removeReview(bookId, revId).then(() => {
+  function onBookNav(direction) {
+    bookService.getNextBook(direction, book.id).then((book) => {
+      navigate(`/book/${book.id}`)
+    })
+  }
+
+  function onRemoveReview(book, revId) {
+    bookService.removeReview(book, revId).then(() => {
       loadBook()
     })
   }
 
-  function addBookReview(bookId, review) {
-    bookService.addReview(bookId, review).then(() => {
-      loadBook()
+  function addBookReview(book, review) {
+    bookService.addReview(book, review).then((book) => {
+      setBook({ ...book })
     })
   }
 
   function onGoBack() {
-    navigate("/book")
+    navigate(-1)
   }
 
   function getPageCountTag(pageCount) {
@@ -67,14 +73,30 @@ export function BookDetails() {
 
   return (
     <section className='book-details'>
-      <div className='details-btns flex align-center justify-between'>
-        <button className='btn-back' onClick={onGoBack}>
-          <i className='fa-solid fa-arrow-left'></i>
+      <nav className='details-nav flex align-center justify-between'>
+        <button className='btn-detalis absolute btn-left' onClick={onGoBack}>
+          <i className='fa-solid fa-xmark'></i>
         </button>
-        <Link className='btn-edit btn-back' to={`/book/edit/${book.id}`}>
-          <i className='fa-regular fa-pen-to-square'></i>
+        <Link
+          className='btn-detalis absolute btn-right'
+          to={`/book/edit/${book.id}`}>
+          <i className='fa-solid fa-pen-to-square'></i>
         </Link>
-      </div>
+        <button
+          className='btn-detalis btn-left'
+          onClick={() => {
+            onBookNav("prev")
+          }}>
+          <i class='fa-solid fa-arrow-left'></i> Prev
+        </button>
+        <button
+          className='btn-detalis btn-right'
+          onClick={() => {
+            onBookNav("next")
+          }}>
+          Next <i class='fa-solid fa-arrow-right'></i>
+        </button>
+      </nav>
       <img className='book-img' src={book.thumbnail} alt={book.title} />
       <div className='txt-wrapper'>
         <h1 className='book-d-title'>{book.title}</h1>

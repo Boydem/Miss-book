@@ -15,7 +15,7 @@ export function AddReview({ book, addBookReview }) {
 
   function onAddReview(ev) {
     ev.preventDefault()
-    addBookReview(book.id, reviewToEdit)
+    addBookReview(book, reviewToEdit)
   }
 
   const ratingStars = [0, 0, 0, 0, 0]

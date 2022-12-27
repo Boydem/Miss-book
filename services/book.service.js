@@ -12,20 +12,27 @@ export const bookService = {
   getDefaultFilter,
   getEmptyBook,
   addReview,
-  removeReview
+  removeReview,
+  getNextBook
 }
 
-
-function removeReview(bookId,revId){
-  return get(bookId).then(book=>{
-    const revIdx = book.reviews.findIndex(rev=>rev.id===revId)
-    book.reviews.splice(revIdx,1)
-    return save(book)
+function getNextBook(direction,currBookId){
+    direction = (direction === 'next') ? +1 : -1
+  return query(BOOK_DB).then((books)=>{
+    const currBookIdx = books.findIndex(book=>currBookId === book.id)
+    if(books.length - 1 < currBookIdx) return books[0]
+    else if(currBookIdx === 0) return books[books.length-1]
+    return books[currBookIdx + direction]
   })
 }
 
-function addReview(bookId,review){
-  return get(bookId).then((book)=>{
+function removeReview(book,revId){
+    const revIdx = book.reviews.findIndex(rev=>rev.id===revId)
+    book.reviews.splice(revIdx,1)
+    return save(book)
+}
+
+function addReview(book,review){
     review.id = utilService.makeId()
     if(!book.reviews||!book.reviews.length){
      book.reviews = [review] 
@@ -33,7 +40,6 @@ function addReview(bookId,review){
       book.reviews.unshift(review)
     }
     return save(book)
-  })
 }
 
 function getEmptyBook(title = ''){

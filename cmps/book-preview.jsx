@@ -1,4 +1,4 @@
-const { Link, NavLink } = ReactRouterDOM
+const { Link } = ReactRouterDOM
 
 export function BookPreview({ book, onRemoveBook }) {
   return (
